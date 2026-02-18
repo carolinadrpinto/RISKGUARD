@@ -798,3 +798,9 @@ def download_contract_pdfs(row,
         "saved": saved,
         "skipped": skipped
     }
+
+from typing import List
+def get_covid_legal_frameworks() -> List[str]:
+    return ["10-A/2020, de 13.03",
+        "1-A/2020, de 20.03",
+        "30/2021, de 21.05"]

@@ -371,3 +371,28 @@ def get_covid_legal_frameworks() -> List[str]:
     return ["10-A/2020, de 13.03",
         "1-A/2020, de 20.03",
         "30/2021, de 21.05"]
+
+
+
+def preprocess_text(text: str) -> str:
+    if text is None:
+        return text
+
+    # 1. Remover pontuação ASCII
+    #text = text.translate(str.maketrans("", "", string.punctuation))
+
+    text = text.translate(str.maketrans(
+    string.punctuation,          # caracteres a substituir
+    " " * len(string.punctuation) # todos substituídos por espaço
+    ))
+
+    # 3. Normalizar espaços
+    text = re.sub(r"\s+", " ", text).strip()
+
+    # # 4. Remover palavras com 1 ou 2 caracteres
+    # text = ' '.join(word for word in text.split() if len(word) > 2)
+
+    # 5. Normalizar novamente espaços (após remoção)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    return text
